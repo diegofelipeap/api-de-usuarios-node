@@ -41,11 +41,20 @@ app.get('/projects', (request, response) => {
 })
 
 app.post('/projects', (request, response) => {
-    const { name, age } = request.body
-    const user = { id: uuid.v4(), name, age }
+    try {
+        const { name, age } = request.body
 
-    users.push(user)
-    return response.status(201).json(user)
+        if (age < 18) throw new Error("Only allowed users over 18 years old")
+        const user = { id: uuid.v4(), name, age }
+
+        users.push(user)
+        return response.status(201).json(user)
+    } catch (error) {
+        return response.status(500).json({ error: "Internal server error" })
+
+    } finally{
+        console.log("finalizou tudo")
+    }
 })
 
 
