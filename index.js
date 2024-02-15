@@ -1,17 +1,13 @@
-//Aprendendo tudo sobre Node e Backend!
-const express = require('express')
-const port = 3000
-const app = express()
-const uuid = require('uuid')
-app.use(express.json())
+import express from 'express';
+import { v4 } from "uuid";
+import cors from 'cors';
 
+const port = 3001;
+const app = express();
+app.use(express.json());
+app.use(cors())
 
-/*Vamos criar nossas Routes!
-- GET: Busca informações no Backend
-- POST: Cria informações no Backend
-- PUT/PATH: Altera/atualiza informações no Backend
-- DELETE: Deleta informações no Backend
-*/
+console.log(port)
 
 const users = []
 
@@ -30,9 +26,6 @@ const checkUserId = (request, response, next) => {
 
 }
 
-/*
-Middlewares! São Interceptadores => têm o poder de parar ou alterar dados da requisição
-*/
 
 
 
@@ -41,20 +34,12 @@ app.get('/projects', (request, response) => {
 })
 
 app.post('/projects', (request, response) => {
-    try {
-        const { name, age } = request.body
 
-        if (age < 18) throw new Error("Only allowed users over 18 years old")
-        const user = { id: uuid.v4(), name, age }
+    const { name, age } = request.body
+    const user = { id: v4(), name, age }
 
-        users.push(user)
-        return response.status(201).json(user)
-    } catch (error) {
-        return response.status(500).json({ error: "Internal server error" })
-
-    } finally{
-        console.log("finalizou tudo")
-    }
+    users.push(user)
+    return response.status(201).json(user)
 })
 
 
