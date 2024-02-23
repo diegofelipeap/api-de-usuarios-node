@@ -5,7 +5,7 @@
   "description": "Meu primeiro teste no NODE",
   "main": "index.js",
   "engines": {
-    "node": "18.x"
+    "node": "20.11.0"
   },
   "scripts": {
     "start": "node index.js",
