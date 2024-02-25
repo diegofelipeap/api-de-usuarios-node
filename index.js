@@ -54,7 +54,7 @@ app.put('/projects/:id', checkUserId, (request, response) => {
 
     users[index] = updateUser
 
-    return response.json(updateUser)
+    return response.json(users)
 })
 
 app.delete('/projects/:id', checkUserId, (request, response) => {
