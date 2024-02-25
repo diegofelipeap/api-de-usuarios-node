@@ -4,12 +4,12 @@ import cors from 'cors';
 
 
 
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
 app.use(cors())
 
-console.log(port)
+console.log(PORT)
 
 const users = []
 
@@ -66,6 +66,6 @@ app.delete('/projects/:id', checkUserId, (request, response) => {
 })
 
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port} ✅☑️`)
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT} ✅☑️`)
 })
